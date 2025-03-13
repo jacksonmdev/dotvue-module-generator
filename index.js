@@ -29,17 +29,17 @@ const createModule = (moduleName) => {
   const files = {
     '.keep': '',
     'composables/comp.useDotVue.ts': 'export const useDotVue = () => {}\n',
-    'composables/index.ts': "export * from './useDotVue'\n",
+    'composables/index.ts': "export * from './comp.useDotVue'\n",
     'constants/const.dot-vue.ts': 'export const count = 1',
     'constants/index.ts': "export * from './const.dot-vue'\n",
     'extensions/ext.dot-vue.ts': 'export const DotVueExtension = () => {}\n',
-    'extensions/index.ts': "export * from './dotvue.ext'\n",
-    'types/type.dot-vuew.ts': 'export type DotVueType = { type: string }\n',
-    'types/index.ts': "export * from './dotvue.type'\n",
+    'extensions/index.ts': "export * from './ext.dot-vue'\n",
+    'types/type.dot-vue.ts': 'export type DotVueType = { type: string }\n',
+    'types/index.ts': "export * from './type.dot-vue'\n",
     'ui/atoms/atom.dot-vue.vue':
       '<template>\n  <div>Hello World!</div>\n</template>\n',
     'ui/atoms/index.ts':
-      "export { default as AtomDotVue } from './atom.dot-vuew.vue'\n",
+      "export { default as AtomDotVue } from './atom.dot-vue.vue'\n",
     'ui/molecules/molecule.dot-vue.vue':
       '<template>\n  <div>Hello World!</div>\n</template>\n',
     'ui/molecules/index.ts':
