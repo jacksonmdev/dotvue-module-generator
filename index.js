@@ -4,7 +4,12 @@ const path = require('path')
 const minimist = require('minimist')
 
 const createModule = (moduleName) => {
-  const modulePath = path.join(process.cwd(), 'src', 'modules', moduleName)
+  // Check if src/modules exists, fallback to app/modules
+  const baseDir = fs.existsSync(path.join(process.cwd(), 'src', 'modules')) 
+    ? path.join('src', 'modules') 
+    : path.join('app', 'modules')
+  
+  const modulePath = path.join(process.cwd(), baseDir, moduleName)
 
   // Create the directory
   fs.ensureDirSync(modulePath)
@@ -20,41 +25,12 @@ const createModule = (moduleName) => {
     'ui/organisms',
   ]
 
-  // Create the directories
+  // Create the directories and add .keep files
   directories.forEach((dir) => {
-    fs.ensureDirSync(path.join(modulePath, dir))
+    const dirPath = path.join(modulePath, dir)
+    fs.ensureDirSync(dirPath)
+    fs.writeFileSync(path.join(dirPath, '.keep'), '')
   })
-
-  // Create default files
-  const files = {
-    '.keep': '',
-    'composables/comp.useDotVue.ts': 'export const useDotVue = () => {}\n',
-    'composables/index.ts': "export * from './comp.useDotVue'\n",
-    'constants/const.dot-vue.ts': 'export const count = 1',
-    'constants/index.ts': "export * from './const.dot-vue'\n",
-    'extensions/ext.dot-vue.ts': 'export const DotVueExtension = () => {}\n',
-    'extensions/index.ts': "export * from './ext.dot-vue'\n",
-    'types/type.dot-vue.ts': 'export type DotVueType = { type: string }\n',
-    'types/index.ts': "export * from './type.dot-vue'\n",
-    'ui/atoms/atom.dot-vue.vue':
-      '<template>\n  <div>Hello World!</div>\n</template>\n',
-    'ui/atoms/index.ts':
-      "export { default as AtomDotVue } from './atom.dot-vue.vue'\n",
-    'ui/molecules/molecule.dot-vue.vue':
-      '<template>\n  <div>Hello World!</div>\n</template>\n',
-    'ui/molecules/index.ts':
-      "export { default as MoleculeDotVue } from './molecule.dot-vue.vue'\n",
-    'ui/organisms/organism.dot-vue.vue':
-      '<template>\n  <div>Hello World!</div>\n</template>\n',
-    'ui/organisms/index.ts':
-      "export { default as OrganismDotVue } from './organism.dot-vue.vue'\n",
-    'ui/index.ts':
-      "export * from './atoms'\nexport * from './molecules'\nexport * from './organisms'\n",
-  }
-
-  for (const [fileName, content] of Object.entries(files)) {
-    fs.writeFileSync(path.join(modulePath, fileName), content)
-  }
 
   console.log(`Module ${moduleName} created successfully!`)
 }
