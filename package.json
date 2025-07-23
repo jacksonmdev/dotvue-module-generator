@@ -1,18 +1,27 @@
 {
   "name": "dotvue-module-generator",
-  "version": "1.2.1",
+  "version": "1.2.2",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/jacksonmdev/dotvue-module-generator#readme",
+  "bugs": {
+    "url": "https://github.com/jacksonmdev/dotvue-module-generator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksonmdev/dotvue-module-generator.git"
+  },
+  "license": "ISC",
+  "author": "jacksonm",
+  "type": "commonjs",
   "main": "index.js",
+  "bin": {
+    "create-module": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "node index.js"
   },
-  "bin": {
-    "create-module": "index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "fs-extra": "^11.3.0",
     "minimist": "^1.2.8"
