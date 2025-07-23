@@ -26,6 +26,21 @@ create-module --module my-module-name
 npx dotvue-module-generator --module my-module-name
 ```
 
+### Project Script (Recommended)
+Add this script to your project's `package.json`:
+```json
+{
+  "scripts": {
+    "generate:module": "create-module --module"
+  }
+}
+```
+
+Then use:
+```bash
+npm run generate:module my-module-name
+```
+
 ## Features
 
 - Creates a complete module structure with organized directories
